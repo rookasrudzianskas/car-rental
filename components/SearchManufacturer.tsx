@@ -24,7 +24,6 @@ const SearchManufacturer = ({ manufacturer, setManuFacturer }: SearchManuFacture
     <div className='search-manufacturer'>
       <Combobox value={manufacturer} onChange={setManuFacturer}>
         <div className='relative w-full'>
-          {/* Button for the combobox. Click on the icon to see the complete dropdown */}
           <Combobox.Button className='absolute top-[14px]'>
             <Image
               src='/car-logo.svg'
@@ -35,7 +34,6 @@ const SearchManufacturer = ({ manufacturer, setManuFacturer }: SearchManuFacture
             />
           </Combobox.Button>
 
-          {/* Input field for searching */}
           <Combobox.Input
             className='search-manufacturer__input'
             displayValue={(item: string) => item}
@@ -43,13 +41,12 @@ const SearchManufacturer = ({ manufacturer, setManuFacturer }: SearchManuFacture
             placeholder='Volkswagen...'
           />
 
-          {/* Transition for displaying the options */}
           <Transition
-            as={Fragment} // group multiple elements without introducing an additional DOM node i.e., <></>
+            as={Fragment}
             leave='transition ease-in duration-100'
             leaveFrom='opacity-100'
             leaveTo='opacity-0'
-            afterLeave={() => setQuery("")} // Reset the search query after the transition completes
+            afterLeave={() => setQuery("")}
           >
             <Combobox.Options
               className='absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'
@@ -79,7 +76,6 @@ const SearchManufacturer = ({ manufacturer, setManuFacturer }: SearchManuFacture
                           {item}
                         </span>
 
-                        {/* Show an active blue background color if the option is selected */}
                         {selected ? (
                           <span className={`absolute inset-y-0 left-0 flex items-center pl-3 ${active? "text-white": "text-pribg-primary-purple"}`}
                           ></span>
