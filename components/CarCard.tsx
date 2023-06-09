@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {CarProps} from "@/types";
 
 interface CarCardProps {
@@ -7,6 +7,7 @@ interface CarCardProps {
 
 const CarCard = ({car}: CarCardProps) => {
   const { city_mpg, year, make, model, transmission, drive } = car;
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div>
