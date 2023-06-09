@@ -1,9 +1,16 @@
 import React from 'react';
+import {CarProps} from "@/types";
 
-const CarCard = ({}) => {
+interface CarCardProps {
+  car: CarProps;
+}
+
+const CarCard = ({car}: CarCardProps) => {
+  const { city_mpg, year, make, model, transmission, drive } = car;
+
   return (
     <div>
-      
+
     </div>
   );
 };
