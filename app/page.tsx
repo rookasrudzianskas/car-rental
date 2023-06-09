@@ -13,6 +13,7 @@ export default async function Home({searchParams}: HomeProps) {
     model: searchParams.model || "",
   });
 
+  const isDataEmpty = !Array.isArray(allCars) || !allCars.length < 1 || !allCars;
 
   return (
     <main className="overflow-hidden">
