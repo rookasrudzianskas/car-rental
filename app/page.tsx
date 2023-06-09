@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from "react";
-import {CustomFilter, Hero, SearchBar} from "@/components";
+import {CarCard, CustomFilter, Hero, SearchBar} from "@/components";
 import {fetchCars} from "@/utils";
 import {HomeProps} from "@/types";
 
@@ -30,6 +30,27 @@ export default async function Home({searchParams}: HomeProps) {
             <CustomFilter title="Year"/>
           </div>
         </div>
+
+        {!isDataEmpty ? (
+          <section>
+            <div className='home__cars-wrapper'>
+              {allCars?.map((car) => (
+                <CarCard car={car} />
+              ))}
+            </div>
+
+            {/*<ShowMore*/}
+            {/*  pageNumber={(searchParams.limit || 10) / 10}*/}
+            {/*  isNext={(searchParams.limit || 10) > allCars.length}*/}
+            {/*/>*/}
+          </section>
+        ) : (
+          <div className='home__error-container'>
+            <h2 className='text-black text-xl font-bold'>Oops, no results</h2>
+            <p>{allCars?.message}</p>
+          </div>
+        )}
+
       </div>
     </main>
   )
