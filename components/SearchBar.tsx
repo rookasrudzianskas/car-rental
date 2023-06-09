@@ -1,7 +1,8 @@
 "use client";
-import React from 'react';
+import React, {useState} from 'react';
 import Image from "next/image";
 import {SearchManufacturer} from "@/components";
+import {useRouter} from "next/navigation";
 
 const SearchButton = ({ otherClasses }: { otherClasses: string }) => (
   <button type='submit' className={`-ml-3 z-10 ${otherClasses}`}>
@@ -16,7 +17,10 @@ const SearchButton = ({ otherClasses }: { otherClasses: string }) => (
 );
 
 const SearchBar = ({}) => {
+  const [manufacturer, setManuFacturer] = useState("");
+  const [model, setModel] = useState("");
 
+  const router = useRouter();
   const handleSearch = (e: any) => {
     e.preventDefault();
   }
