@@ -1,7 +1,7 @@
 "use client";
 import React, {useState} from 'react';
 import Image from "next/image";
-import {SearchManufacturer} from "@/components";
+import {SearchsearchManufacturer} from "@/components";
 import {useRouter} from "next/navigation";
 
 const SearchButton = ({ otherClasses }: { otherClasses: string }) => (
@@ -16,21 +16,21 @@ const SearchButton = ({ otherClasses }: { otherClasses: string }) => (
   </button>
 );
 
-const SearchBar = ({setManufacturer, seModel}) => {
-  const [searchManufacturer, setSearchManuFacturer] = useState("");
+const SearchBar = ({setsearchManufacturer, seModel}) => {
+  const [searchsearchManufacturer, setSearchsearchManufacturer] = useState("");
   const [setModel, setSearchModel] = useState("");
 
   const router = useRouter();
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if(manufacturer === '' || model === '') {
+    if(searchManufacturer === '' || model === '') {
       return alert('Please fill in all the fields');
     }
-    updateSearchParams(model.toLowerCase(), manufacturer.toLowerCase());
+    updateSearchParams(model.toLowerCase(), searchManufacturer.toLowerCase());
   }
 
-  const updateSearchParams = (model: string, manufacturer: string) => {
+  const updateSearchParams = (model: string, searchManufacturer: string) => {
     const searchParams = new URLSearchParams(window.location.search);
 
     if(model) {
@@ -39,10 +39,10 @@ const SearchBar = ({setManufacturer, seModel}) => {
       searchParams.delete('model');
     }
 
-    if(manufacturer) {
-      searchParams.set('manufacturer', manufacturer);
+    if(searchManufacturer) {
+      searchParams.set('searchManufacturer', searchManufacturer);
     } else {
-      searchParams.delete('manufacturer');
+      searchParams.delete('searchManufacturer');
     }
 
     const newPathname = `${window.location.pathname}?${searchParams.toString()}`;
@@ -52,7 +52,7 @@ const SearchBar = ({setManufacturer, seModel}) => {
   return (
     <form className='searchbar' onSubmit={handleSearch}>
       <div className='searchbar__item'>
-        <SearchManufacturer
+        <SearchsearchManufacturer
           manufacturer={manufacturer}
           setManuFacturer={setManuFacturer}
         />
