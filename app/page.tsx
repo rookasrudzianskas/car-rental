@@ -1,6 +1,6 @@
 "use client"
 import Image from 'next/image'
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {CarCard, CustomFilter, Hero, SearchBar, ShowMore} from "@/components";
 import {fetchCars} from "@/utils";
 import {HomeProps} from "@/types";
@@ -18,6 +18,28 @@ export default function Home() {
 
   const [limit, setLimit] = useState(10);
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
+
+  const getCars = async () => {
+    setLoading(true);
+    try {
+      const result = await fetchCars({
+        manufacturer: manufacturer || "",
+        year: year || 2022,
+        fuel: fuel || "",
+        limit: limit || 10,
+        model: model || "",
+      });
+      setAllCars(result);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getCars();
+  }, [fuel, year, limit, manufacturer, model]);
 
   return (
     <main className="overflow-hidden">
