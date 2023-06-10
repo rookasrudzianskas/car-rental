@@ -16,9 +16,9 @@ const SearchButton = ({ otherClasses }: { otherClasses: string }) => (
   </button>
 );
 
-const SearchBar = ({}) => {
-  const [manufacturer, setManuFacturer] = useState("");
-  const [model, setModel] = useState("");
+const SearchBar = ({setManufacturer, seModel}) => {
+  const [searchManufacturer, setSearchManuFacturer] = useState("");
+  const [setModel, setSearchModel] = useState("");
 
   const router = useRouter();
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
