@@ -4,13 +4,15 @@ import {CustomFilterProps} from "@/types";
 import {useRouter} from "next/navigation";
 import {Listbox, Transition} from "@headlessui/react";
 import Image from "next/image";
+import {updateSearchParams} from "@/utils";
 
 const CustomFilter = ({ title, options }: CustomFilterProps) => {
   const router = useRouter();
   const [selected, setSelected] = useState(options[0]);
 
   const handleUpdateParams = (e: { title: string; value: string }) => {
-
+    const newPath = updateSearchParams(title, e.value.toLowerCase())
+    router.push(newPath);
   }
 
   return (
