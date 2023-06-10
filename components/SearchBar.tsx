@@ -52,6 +52,7 @@ const SearchBar = ({}) => {
         />
         <SearchButton otherClasses='sm:hidden' />
       </div>
+      <SearchButton otherClasses='max-sm:hidden' />
     </form>
   );
 };
