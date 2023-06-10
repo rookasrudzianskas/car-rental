@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {CarProps} from "@/types";
+import {Transition} from "@headlessui/react";
 
 interface CarDetailsProps {
   isOpen: boolean;
@@ -9,9 +10,11 @@ interface CarDetailsProps {
 
 const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
   return (
-    <div>
+    <>
+      <Transition appear show={isOpen} as={Fragment}>
 
-    </div>
+      </Transition>
+    </>
   );
 };
 
