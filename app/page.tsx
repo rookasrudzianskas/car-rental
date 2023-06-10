@@ -41,6 +41,7 @@ export default function Home() {
     getCars();
   }, [fuel, year, limit, manufacturer, model]);
 
+  // @ts-ignore
   return (
     <main className="overflow-hidden">
       <Hero/>
@@ -50,14 +51,14 @@ export default function Home() {
           <p>Explore the cars you might like</p>
         </div>
         <div className="home__filters">
-          <SearchBar/>
+          <SearchBar setManufacturer={setManufacturer} setModel={setModel}/>
           <div className="home__filter-container">
-            <CustomFilter title="Fuel" options={fuels}/>
-            <CustomFilter title="Year" options={yearsOfProduction}/>
+            <CustomFilter title="Fuel" options={fuels} setFilter={setFuel}/>
+            <CustomFilter title="Year" options={yearsOfProduction} setFilter={setYear}/>
           </div>
         </div>
 
-        {!isDataEmpty ? (
+        {allCars.length > 0 ? (
           <section>
             <div className='home__cars-wrapper'>
               {allCars?.map((car) => (
@@ -65,14 +66,22 @@ export default function Home() {
               ))}
             </div>
 
+            {loading && (
+              <div className="mt-16 w-full flex-center">
+                <Image src={'/loader.svg'} alt={'loader'} width={50} height={50} className="object-contain" />
+              </div>
+            )}
+
             <ShowMore
-              pageNumber={(searchParams.limit || 10) / 10}
-              isNext={(searchParams.limit || 10) > allCars.length}
+              pageNumber={(limit) / 10}
+              isNext={limit > allCars.length}
+              setLimit={setLimit}
             />
           </section>
         ) : (
           <div className='home__error-container'>
             <h2 className='text-black text-xl font-bold'>Oops, no results</h2>
+            {/*@ts-ignore*/}
             <p>{allCars?.message}</p>
           </div>
         )}
